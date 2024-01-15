@@ -12,7 +12,15 @@ DeepFashion-Multimodal Dataset https://github.com/yumingj/DeepFashion-MultiModal
 
 ## TO DO:
 - Task 2: superimpose shirt onto desired background
-- Refine Task 3: 
+- Refine Task 3:
+  
+    Currently
+    1. has to have original image AND segmentation map in Uploads folder;
+    2. takes in HSV inputs;
+    
+    In future:
+    1. take in only original image (generate segmentation map with pretrained model fine-tuned on DeepFashion dataset)
+    2. take user input of semantic colours instead of HSV values
 
 ## Completed Tasks:
 - Task 1: Changing Colour of Shirt in an image while preserving shadows/brightness
