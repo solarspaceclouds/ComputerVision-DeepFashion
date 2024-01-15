@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <title>Upload new File</title>
+  <script>
+    function previewImage() {
+      var file = document.querySelector('input[type=file]').files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function () {
+        document.getElementById('imagePreview').src = reader.result;
+      }
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        document.getElementById('imagePreview').src = "";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Upload new File</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" onchange="previewImage()">
+    <input type="submit" value="Upload">
+  </form>
+  <img id="imagePreview" src="" alt="Image preview" style="max-width: 500px; height: auto;">
+</body>
+</html>
