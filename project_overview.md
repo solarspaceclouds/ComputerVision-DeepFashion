@@ -4,11 +4,11 @@
 - Save the new image;
 
 # Task 2: Repeat Task 1 but with added intial step of detecting shirt (identify shirt mask) before changing shirt color
-- Take pictures and detect the clothes 
-- generate png with background removed (of the image) 
-- Then overlay it on top of any aesthetic background
+- Take pictures and detect the clothes (Optional step; relevant if using own images, if DeepFashion image, just get the desired label mask) 
+- Generate png with background removed (of the image) 
+- Then overlay it on top of any aesthetic background image
 
-# Task 3: Create Web App; UI 
+# Task 3: Create Web App; (UI for Task 1)
 → extension: identify which mask is the shorts/dress component; 
 Have UI user selection options
 Enable choosing a variety of colours: Change the pixel values to predefined/custom colour

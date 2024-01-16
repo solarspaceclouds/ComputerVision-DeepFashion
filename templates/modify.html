@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <title>Modify Image</title>
+  <style>
+    img {
+      max-width: 300px; /* Adjust the width as needed */
+      height: auto; /* This will maintain the aspect ratio */
+    }
+  </style>
+  <script>
+    function modifyImage() {
+      event.preventDefault(); // Prevent the form from submitting normally
+
+      // Get form data
+      let formData = new FormData(document.getElementById('colorForm'));
+
+      // Send POST request to the server with form data
+      fetch('', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob(); // Assuming the response is the modified image
+      })
+      .then(blob => {
+        // Create a URL for the blob object
+        let url = URL.createObjectURL(blob);
+
+        // Update the image source with the new URL
+        document.getElementById('modifiedImage').src = url;
+        document.getElementById('modifiedImage').style.display = 'block';
+
+        // Trigger download
+        downloadImage(url);
+
+        // Cleanup the object URL after use
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+      })
+      .catch(error => console.error('There was a problem with the fetch operation:', error));
+    }
+
+    function downloadImage(url) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'modified_image.png'; // or dynamically set the filename
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+</head>
+<body>
+  <h1>Modify Image</h1>
+  <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image"/>
+  <img id="modifiedImage" alt="Modified Image" style="display:none;"/>
+  <form id="colorForm" onsubmit="modifyImage()">
+    <label for="hue">Hue (0-180):</label>
+    <input type="number" id="hue" name="hue" min="0" max="180" value="120"><br>
+    <label for="saturation">Saturation (0-255):</label>
+    <input type="number" id="saturation" name="saturation" min="0" max="255" value="255"><br>
+    <input type="submit" value="Modify Image">
+  </form>
+</body>
+</html>

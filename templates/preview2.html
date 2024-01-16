@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <title>Image Preview</title>
+  <style>
+    .image-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    img {
+      max-width: 300px; /* Adjust the width as needed */
+      height: auto; /* This will maintain the aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Preview</h1>
+  <div class="image-container">
+    <div>
+      <h2>Shirt Image</h2>
+      <img src="{{ url_for('uploaded_file', filename=shirt_image) }}" alt="Shirt Image">
+    </div>
+    <div>
+      <h2>Art Print Image</h2>
+      <img src="{{ url_for('uploaded_file', filename=artprint_image) }}" alt="Art Print Image">
+    </div>
+  </div>
+  <form action="/process" method="post">
+    <input type="hidden" name="shirt_image" value="{{ shirt_image }}">
+    <input type="hidden" name="artprint_image" value="{{ artprint_image }}">
+    <input type="submit" value="Process Images">
+  </form>
+</body>
+</html>

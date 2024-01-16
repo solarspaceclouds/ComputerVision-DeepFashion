@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <title>Processed Image</title>
+  <style>
+    .image-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    img {
+      max-width: 300px; /* Adjust the width as needed */
+      height: auto; /* This will maintain the aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <h1>Processed Image</h1>
+  <img src="{{ url_for('processed_file', filename=filename) }}" alt="Processed Image">
+  <a href="{{ url_for('processed_file', filename=filename) }}" download>Download Image</a>
+</body>
+</html>
